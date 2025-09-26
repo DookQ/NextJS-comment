@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+export const revalidate = 0; // ให้ API เป็น dynamic
+// (ถ้าจำเป็น) export const runtime = 'nodejs';
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const postId = searchParams.get("postId");
@@ -10,6 +13,5 @@ export async function GET(req: Request) {
   });
   if (!r.ok) return NextResponse.json({ error: "upstream failed" }, { status: 502 });
 
-  const data = await r.json();
-  return NextResponse.json(data);
+  return NextResponse.json(await r.json());
 }

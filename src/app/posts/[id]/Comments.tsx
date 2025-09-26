@@ -23,7 +23,6 @@ export default function Comments({ postId }: { postId: string }) {
   }, [postId]);
 
   if (loading) return <p>Loading…</p>;
-
   return (
     <ul className="space-y-3">
       {data.map((c) => (
